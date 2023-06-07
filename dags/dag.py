@@ -23,7 +23,7 @@ def scrape_dag():
     #     python_callable=save_to_db,
     # )
 
-    scrape_from_olx(save_to_db())
+    scrape_from_olx() >> save_to_db()
 
 
 scrape_dag()
