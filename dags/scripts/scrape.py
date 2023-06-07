@@ -1,5 +1,6 @@
 import pandas as pd
 import requests
+from airflow.decorators import task
 from bs4 import BeautifulSoup
 
 BASE_URL = "https://www.olx.pl/oferty/q-"
@@ -13,6 +14,7 @@ def extract_from_href(result, page):
     return [result.append(data.get("href")) for data in page]
 
 
+@task
 def scrape_from_olx(item: str = "iphone", pages: int = 1) -> pd.DataFrame:
     result_links, result_names, result_prices, result_state = [], [], [], []
 
